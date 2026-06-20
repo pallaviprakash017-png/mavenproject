@@ -2,14 +2,16 @@
 - name: Deploy Maven Artifact (Jenkins User Accessible)
   hosts: localhost
   become: yes
+
   tasks:
-  - name: Ensure deployment directory exists
-    ansible.builtin.file:
-    path: /home/thejan/deployment
-    state: directory
-    mode: '0755'
-  - name: Copy the artifact to the deployment directory
-    ansible.builtin.copy:
-    src: /var/lib/jenkins/workspace/HelloMaven-CI/target/HelloMaven-1.0-SNAPSHOT.jar
-    dest: /home/thejan/deployment/HelloMaven.jar
-    remote_src: yes
+    - name: Ensure deployment directory exists
+      ansible.builtin.file:
+        path: /home/pallavi/deployment
+        state: directory
+        mode: '0755'
+
+    - name: Copy the artifact to the deployment directory
+      ansible.builtin.copy:
+        src: /mnt/c/Users/Pallavi/.jenkins/workspace/HelloMaven-CI/target/HelloMaven-1.0-SNAPSHOT.jar
+        dest: /home/pallavi/deployment/HelloMaven.jar
+        remote_src: yes
